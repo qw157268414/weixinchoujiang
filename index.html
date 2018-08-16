@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background: #a60c30;
+			}
+			#box{
+				width: 100%;
+				max-width: 650px;
+				margin: 0 auto;
+				background: url(img/index1.jpg);
+				background-size: 100% 100%;
+			}
+			a{
+				display: block;
+				width: 100%;
+				max-width: 650px;
+				margin: -1px auto;
+			}
+			#start{
+				background: url(img/index2.jpg);
+				background-size: 100% 100%;
+			}
+			a:last-of-type{
+				background: url(img/index3.jpg);
+				background-size: 100% 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<a id="start" href="choujiang.html"></a>
+		<a></a>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+	<script>
+		$(function(){
+			var width=parseInt($("#box").css("width"))
+			$("#box").css("height",width*1.3+"px")
+			$("a").css("height",width*0.08+"px")
+		})
+	</script>
+</html>

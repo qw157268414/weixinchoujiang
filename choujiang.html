@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background: #a60c30;
+				font:15px/15px "微软雅黑";
+			}
+			div{
+				width: 100%;
+				max-width: 650px;
+				margin: -1px auto;
+			}
+			.head{
+				
+				background: url(img/九宫格_02.jpg);
+				background-size: 100% 100%;
+				position: relative;
+			}
+			.head>p{
+				white-space: nowrap;
+				position: absolute;
+				bottom: 0px;
+				left: 50%;
+				-webkit-transform: translateX(-50%);
+				transform: translateX(-50%);
+				color: gold;
+				cursor: pointer;
+			}
+			.content{
+				background: url(img/jg_03.jpg);
+				background-size: 100% 100%;
+				box-sizing: border-box;
+				border: 1px solid transparent;
+			}
+			#box{
+				width: 80%;
+				height: 80%;
+				margin: 10% auto;
+				box-sizing: border-box;
+				border: red solid 5px;
+				position: relative;
+			}
+			#box>img{
+				display: block;
+				height: 33.33%;
+				width: 33.33%;
+				box-sizing: border-box;
+				border: white 5px solid;
+				position: absolute;
+			}
+			#box>img:nth-of-type(1){
+				border-color: aqua;
+				top: 0;
+				left: 0;
+			}
+			#box>img:nth-of-type(2){
+				top: 0;
+				left: 33.3%;
+			}
+			#box>img:nth-of-type(3){
+				top: 0;
+				left: 66.6%;
+			}
+			#box>img:nth-of-type(4){
+				top: 33.3%;
+				left: 66.6%;
+			}
+			
+			#box>img:nth-of-type(5){
+				top: 66.6%;
+				left: 66.6%;
+			}
+			#box>img:nth-of-type(6){
+				top: 66.6%;
+				left: 33.3%;
+			}
+			#box>img:nth-of-type(7){
+				top: 66.6%;	
+				left: 0;
+			}
+			#box>img:nth-of-type(8){
+				top: 33.3%;	
+				left: 0;
+			}
+			#box>img:nth-of-type(9){
+				top: 33.3%;
+				left: 33.3%;
+			}
+			.modal-4{
+				max-width: 99999px;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				background: rgba(0,0,0,0.5);
+				z-index: 10;
+				display: none;
+			}
+			.modal-4>div>p:first-of-type{
+				color: red;
+			}
+			.modal-4>div{
+				background: #FFFFFF;
+				width: 90%;
+				height: 55%;
+				margin-top: 15%;
+				line-height: 30px;
+				max-height: 300px;
+				box-sizing: border-box;
+			}
+			.modal-4>div>p,.modal-4>div>h3{
+				text-align: center;
+			}
+			.modal-4>div>img{
+				display: block;
+				margin: 0 auto;
+			}
+			.myjp{
+				height: 10%;
+				background: url(img/九宫格_04.jpg);
+				background-size: 100% 100%;
+			}
+			.foot{
+				background: url(img/九宫格_05.jpg);
+				background-size: 100% 100%;
+				box-sizing: border-box;
+				border: 1px solid transparent;
+			}
+			#gun{
+				width: 85%;
+				height: 60%;
+				background: white;
+				margin-top: 10%;
+				border: #FF0000 5px solid;
+				overflow: hidden;
+				position: relative;
+			}
+			#gun>h3{
+				color: red;
+				height: 30px;
+				width: 100%;
+				background: white;
+				line-height: 30px;
+				position: absolute;
+				top: 0px;
+				left: 10px;
+				z-index: 1;
+			}
+			#gun>ul{
+				height: 200%;
+				width: 100%;
+				position: absolute;
+				top: 30px;
+				z-index: 0;
+			}
+			#gun>ul>li{
+				list-style: none;
+				line-height: 20px;
+				color: #888888;
+				font-size: 12px;
+				margin-left: 10px;
+			}
+			#gun>ul>li>span{
+				margin-left: 10px;
+			}
+			.modal{
+				max-width: 99999px;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				background: rgba(0,0,0,0.5);
+				display: none;
+			}
+			.modal>div:first-of-type{
+				padding: 1%;
+				background: #FFFFFF;
+				width: 90%;
+				height: 55%;
+				margin-top: 15%;
+				line-height: 30px;
+				overflow-y: scroll;
+				max-height: 300px;
+				box-sizing: border-box;
+				border-radius:10px 10px 0px 0px ;
+			}
+			.modal>div>h3{
+				text-align: center;
+				cursor: pointer;
+			}
+			.modal>div:last-of-type{
+				background: #FFFFFF;
+				width: 90%;
+				height: 5%;
+				margin-top: 0;
+				max-height: 30px;
+				line-height: 30px;
+				border-top:#888888 2px solid ;
+				box-sizing: border-box;
+				border-radius:0px 0px 10px 10px ;
+			}
+			.modal-2{
+				max-width: 99999px;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				background: rgba(0,0,0,0.5);
+				display: none;
+			}
+			.modal-2>div{
+				background: #FFFFFF;
+				width: 90%;
+				height: 50%;
+				margin-top: 15%;
+				background: white;
+				box-sizing: border-box;
+				border-radius: 10px;
+				position: relative;
+			}
+			.modal-2>div>form{
+				height: 85%;
+				padding:5% 10%;
+				box-sizing: border-box;
+			}
+			
+			.modal-2>div>form>h3{
+				text-align: center;
+				height: 20%;
+			}
+			.modal-2>div>form>p{
+				height: 20%;
+			}
+			.modal-2>div>form>p>input{
+				width: 80%;
+				height: 80%;
+				outline:none;
+				border-radius:10px ;
+				text-indent: 5%;	
+			}
+			.modal-2>div>form>p>span{
+				display: block;
+				float: right;
+				height: 35px;
+				width: 35px;
+				color:white;
+				text-align: center;
+				line-height: 35px;
+				border-radius:100% ;
+				font-size: 100%;
+				font-weight: bold;
+				user-select:none ;
+			}
+			.modal-2>div>button{
+				height: 15%;
+				width: 50%;
+				position: absolute;
+				bottom: 0px;
+				outline: none;
+				background: #337ab7;
+			
+			}
+			.modal-2>div>button:first-of-type{
+				border-bottom-left-radius:10px  ;
+			}
+			.modal-2>div>button:last-of-type{
+				right: 0px;
+				border-bottom-right-radius:10px  ;
+			}
+			.modal-3{
+				max-width: 99999px;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				opacity: 1;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="head">
+			<p>
+				<span>抽奖次数</span>
+				<span>&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;</span>
+				<span>次&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;游戏规则</span>
+			</p>
+		</div>
+		<div class="content">
+			<div id="box">
+				<img src="img/sudoku_01.jpg" />
+				<img src="img/sudoku_02.jpg" />
+				<img src="img/sudoku_03.jpg" />
+				<img src="img/sudoku_04.jpg" />
+				<img src="img/sudoku_06.jpg" />
+				<img src="img/sudoku_07.jpg" />
+				<img src="img/sudoku_08.jpg" />
+				<img src="img/sudoku_09.jpg" />
+				<img src="img/sudoku_05.jpg" />
+			</div>
+		</div>
+		<div class="modal-4">
+			<div>
+				<h3>提示</h3>
+				<p>恭喜您，中奖了</p>
+				<img src="img/sudoku_01.jpg"/>
+				<p>确认</p>
+			</div>
+		</div>
+		<div class="myjp"></div>
+		<div class="foot">
+			<div id="gun">
+				<h3>已发出的奖品</h3>
+				<ul>
+					<!--<li><span>13707795545</span><span>获得黄封村人参酒两瓶</span></li>-->
+				</ul>
+			</div>
+		</div>
+		<!--模态框-游戏规则-->
+		<div class="modal">
+			<div>
+				<h3>游戏规则</h3>
+				<p>1. 客户需要登录彩练客户端方可参加抽奖活动；</p>
+				<p>2. 每名客户每天抽奖有3次机会，点击转盘的【开始抽奖】按钮进行抽奖，转动结束停留的位置就是您获得的奖品；</p>
+				<p>3. 中奖后需填写姓名、电话，兑奖时根据您的填写的信息进行现场兑奖，具体奖项如下：</p>
+				<p>黄封村人参酒两瓶：共100份，总价值12000元</p>
+				<p>莱沃口腔储值卡：共50份，总价值10000元</p>
+				<p>中国联通流量卡：共200份，总价值10000元</p>
+				<p>S5健身俱乐部贵宾卡：共有80份，总价值8000元</p>
+				<p>圣雅瑜伽SPA会所储值卡：共3份，总价值6000元</p>
+				<p>陶进二胡工作室：共20份，总价值6000元</p>
+				<p>蛋壳科技VR体验卡：共50份，总价值2500元</p>
+				<p>4. 抽奖时间</p>
+				<p>2017年1月27日游戏时间：22：30~23：59：59</p>
+				<p>2017年1月28日~30日游戏时间：每天10：00~23：59：59</p>
+				<p>5. 各奖品兑奖方式及时间不同，具体如下：</p>
+				<p>1)	黄封村人参酒</p>
+				<p>兑奖时间：截止到2017年2月26日</p>
+				<p>兑奖地址：吉林省酒文化博物馆（亚泰大街9699号）</p>
+				<p>联系电话：0431-88508899</p>
+				<p>2)	莱沃口腔储值卡</p>
+				<p>兑奖时间：截止到2017年12月31日</p>
+				<p>兑奖地址：工农大路1780号（省中医院东侧</p>
+				<p>联系电话：0431—89545888</p>
+				<p>注：洗牙4次（不限本人使用）；口腔体检；</p>
+				<p>3)	中国联通流量卡</p>
+				<p>兑奖时间：截止到2017年3月31日</p>
+				<p>兑奖地址：长春市内联通营业厅登记统一存入</p>
+				<p>联系电话：无</p>
+				<p>注：2G/3G用户500M流量；4G用户1G流量;异地号码，非正常在用号码、已有相同流量包、融合套餐等不能使用</p>
+				<p>4)	S5健身俱乐部贵宾卡</p>
+				<p>兑奖时间：截止到2017年4月30日</p>
+				<p>兑奖地址：</p>
+				<p>南关区幸福街与蔚山路交会处绿地中央广场盘古家宴旁</p>
+				<p>高新区荷园路与华光街交会处东行50米安联国际</p>
+				<p>绿园区景阳大路与春城大街交会处北行150米</p>
+				<p>联系电话：</p>
+				<p>0431—81887555；</p>
+				<p>0431—80811555</p>
+				<p>0431—88006122</p>
+				<p>注：3店通用；单天无时间限制，器材限制使用</p>
+				<p>5)	圣雅瑜伽SPA会所储值卡</p>
+				<p>兑奖时间：截止到2017年7月1日</p>
+				<p>兑奖地址：飞跃东路林田创客公园D栋2楼彩练新闻</p>
+				<p>联系电话：13943017772</p>
+				<p>注：每人限用1张；不含服装、垫子等费用；</p>
+				<p>6)	陶进二胡工作室</p>
+				<p>兑奖时间：截止到2017年12月31日</p>
+				<p>兑奖地址：飞跃东路林田创客公园D栋2楼彩练新闻</p>
+				<p>联系电话：13943017772</p>
+				<p>注：学习二胡免一次课时费；</p>
+				<p>7)	蛋壳科技VR体验卡</p>
+				<p>兑奖时间：截止到2017年7月1日</p>
+				<p>兑奖地址：</p>
+				<p>同志街与同光路交会处联通营业厅；</p>
+				<p>联通营业厅前进大街店；</p>
+				<p>联系电话：无</p>
+				<p>注意：VR互动实战体验一次</p>
+				<p>活动最终解释权归彩练新闻所有。</p>
+			</div>
+			<div><h3>确认</h3></div>
+		</div>
+		<div class="modal-2">
+			<div>
+				<form>
+					<h3>输入信息</h3>
+					<p>姓名：</p>
+					<p><input type="text" required="required"/><span><span>✖</span></span></p>
+					<p>手机号：</p>
+					<p><input type="tel"/><span><span>✖</span></span></p>
+				</form>
+				<button>确认</button>
+				<button>取消</button>
+			</div>
+		</div>
+		<div class="modal-3"></div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+	<script>
+		$(function(){
+			//控制图片宽高等比
+			var width=parseInt($(".head").css("width"))
+			$(".head").css("height",width*0.6+"px")
+			$(".content").css("height",width*1+"px")
+			$(".myjp").css("height",width*0.1+"px")
+			$(".foot").css("height",width*0.6+"px")
+			//游戏规则模态框
+			$(".head span").eq(3).click(function(e){
+				$(".modal").eq(0).css("display","block")
+				e.stopPropagation();
+			})
+			$(window).click(function(){
+				$(".modal").css("display","none")
+				$(".modal-2").css("display","none")
+				$(".modal-4").css("display","none")
+			})
+			$(".modal>div").eq(0).click(function(e){
+				e.stopPropagation();
+			})
+			//我的奖品验证
+			$("input").eq(0).on("input",function(){
+				if($("input")[0].value!=""){
+					$(this).siblings().find("span")[0].innerHTML="✔";
+					$(this).siblings().css("background-color","green")
+				}else{
+					$(this).siblings().find("span")[0].innerHTML="✖";
+					$(this).siblings().css("background-color","red")
+				}
+			})
+			$("input").eq(1).on("input",function(){
+				var reg=/^[1-3]\d{10}$/
+				if(reg.test($("input")[1].value)){
+					$(this).siblings().find("span")[0].innerHTML="✔";
+					$(this).siblings().css("background-color","green")
+				}else{
+					$(this).siblings().find("span")[0].innerHTML="✖";
+					$(this).siblings().css("background-color","red")
+				}
+			})
+			$(".modal-2>div").click(function(e){
+				e.stopPropagation();
+			})
+			$(".modal-4>div").click(function(e){
+				e.stopPropagation();
+			})
+			$(".modal-4>div>p").eq(1).click(function(e){
+				$(".modal-4").css("display","none")
+			})
+			$("button").eq(0).click(function(){
+				if($("input").eq(0).siblings().find("span")[0].innerHTML=="✔"&&$("input").eq(1).siblings().find("span")[0].innerHTML=="✔"){
+					open("myjp.html","_parent");
+				}else{
+					alert("请输入正确的姓名和手机号");
+				}
+			})
+			$("button").eq(1).click(function(){
+				$(".modal-2").css("display","none")
+			})
+			$(".myjp").click(function(e){
+				$(".modal-2").css("display","block")
+				e.stopPropagation();
+			})
+			//滚动中奖信息
+			setInterval(function(){
+				var top=parseInt($('#gun ul').css("top"));
+				$('#gun ul').css("top",top-5+"px")
+				if(top<-400){
+					$('#gun ul').css("top",0+"px")
+				}
+			},100)
+			//读取服务器中奖信息
+			$.ajax({
+				url:"js/zj.json",
+				success:function(data){
+					for (var i=0;i<data.length;i++) {
+						$('#gun ul').append("<li><span>"+data[i].name+"</span><span>"+data[i].jp+"</span></li>")
+					}
+				}
+			})
+			//抽奖
+			var num
+			if(localStorage.getItem("num")){
+				num=localStorage.getItem("num")
+			}else{
+				num=3
+			}
+			$(".head span")[1].innerHTML=num;
+			//抽奖概率管理中心
+			var arr = [0,7,7,1,7,7,2,3,4,5,6,7,0,7,2,7,7,5,7,7,6,7,4,7,3,7]
+			$("#box img").eq(8).click(function(){
+				if(num>0){
+					var a = parseInt(Math.random()*27);
+					if(arr[a]==7){
+						$(".modal-4>div>p").eq(0).html("很遗憾！就差一点");
+						$(".modal-4>div>img")[0].src=$('#box>img')[7].src
+					}else{
+						$(".modal-4>div>p").eq(0).html("恭喜您，中奖了");
+						$(".modal-4>div>img")[0].src=$('#box>img')[arr[a]].src;
+						if(localStorage.getItem("jp")){
+							var jp=localStorage.getItem("jp").split(",");
+							jp.push("a"+arr[a]);
+							localStorage.setItem("jp",jp.join(","))
+						}else{
+							localStorage.setItem('jp',"a"+arr[a])
+						}
+					}
+					cj(arr[a]);
+					$(".modal-3").css("display","block")
+					num--;
+					localStorage.setItem("num",num);
+					$(".head span")[1].innerHTML=num;
+				}else{
+					alert("你的抽奖次数已用完，请明天再来")
+				}
+			})
+			function cj(n){
+				var i = 0;//索引
+				var j = 32;//基础步数	
+				var z = j+n;//总步数；
+				var speed = 100;
+				start();
+				function start(){
+					clearInterval(cj.timer);
+					cj.timer = setInterval(function(){
+						i++;
+						z--;
+						if(i==8){
+							speed*=1.2;
+							clearInterval(cj.timer);
+							i=0;
+							start();
+						}
+						if(z==3){
+							speed = 600;
+							clearInterval(cj.timer);
+							start();
+						}
+						$("#box img").eq(i).css("border-color","aqua");
+						$("#box img").eq(i).siblings("img").css("border-color","white");
+						if(z==0){
+							clearInterval(cj.timer);
+							$(".modal-3").css("display","none")
+							$(".modal-4").css("display","block")
+						}
+					},speed)
+				}
+			}
+		})
+	</script>
+</html>
